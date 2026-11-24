@@ -447,7 +447,7 @@
       if (st.el.type !== 'space') out.push(ln(x, 27, xc, AXY - LH - 6, 'leader'));
       out.push(`<g class="marker${isSel}" data-sel="${i}"><circle cx="${f1(x)}" cy="16" r="10"/>` +
         tx(x, 20, String(i + 1), '', 'text-anchor="middle"') + '</g>');
-      if (state.view.formulas) out.push(formulaBox(x, st.el.type === 'space' ? YB - 66 : 32, st, traces, i, isSel));
+      if (state.view.formulas) out.push(formulaBox(x, st.el.type === 'space' ? YB + 2 - boxH(shownRays().length) : 32, st, traces, i, isSel));
     });
 
     // Hinweise
@@ -475,15 +475,21 @@
     const mw = c0 + c1 + 26;
     const w = Math.max(mw, ...vecs.map(s => s.length * cw)) + 10;
     const bx = x - w / 2, mx = x - mw / 2;
-    let g = `<g class="fbox${isSel}" data-sel="${i}"><rect x="${f1(bx)}" y="${f1(y)}" width="${f1(w)}" height="${36 + 11 * vecs.length}" rx="4"/>`;
+    let g = `<g class="fbox${isSel}" data-sel="${i}"><rect x="${f1(bx)}" y="${f1(y)}" width="${f1(w)}" height="${f1(boxH(vecs.length))}" rx="4"/>`;
     g += `<path d="M${f1(mx + 6)},${f1(y + 4)} q-5,13 0,27"/><path d="M${f1(mx + mw - 6)},${f1(y + 4)} q5,13 0,27"/>`;
     [[M[0], M[1]], [M[2], M[3]]].forEach(([a, b], rI) => {
       const yy = y + 15 + rI * 12;
       g += tx(mx + 10 + c0, yy, a, '', 'text-anchor="end"') + tx(mx + 18 + c0 + c1, yy, b, '', 'text-anchor="end"');
     });
-    vecs.forEach((s, j) => { g += tx(x, y + 44 + j * 11, s, `r${shown[j]}`, 'text-anchor="middle"'); });
+    // Kopfzeile: die Vektoren darunter sind der Zustand NACH diesem Element
+    const k = i + 1;
+    g += tx(x, y + 45, `s${subNum(k)} = M${subNum(k)}·s${subNum(k - 1)}`, 'fcap', 'text-anchor="middle"');
+    vecs.forEach((s, j) => { g += tx(x, y + 58 + j * 11, s, `r${shown[j]}`, 'text-anchor="middle"'); });
     return g + '</g>';
   }
+  const boxH = n => 49 + 11 * n;
+  const SUBS = '₀₁₂₃₄₅₆₇₈₉';
+  const subNum = n => String(n).split('').map(c => SUBS[+c]).join('');
 
   // ---------------------------------------------------------------------
   // Karten (Kette)

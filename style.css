@@ -163,6 +163,7 @@ main { padding: 12px 16px 40px; max-width: 1500px; margin: 0 auto; }
 #svg .fbox text.r0 { fill: var(--ray0); }
 #svg .fbox text.r1 { fill: var(--ray1); }
 #svg .fbox text.r2 { fill: var(--ray2); }
+#svg .fbox text.fcap { fill: var(--muted); font-family: inherit; font-style: italic; }
 #svg .fbox.sel rect { stroke: var(--accent); }
 
 @media (prefers-color-scheme: dark) {
