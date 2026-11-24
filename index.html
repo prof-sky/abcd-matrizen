@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ABCD-Matrizen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>ABCD-Matrizen</h1>
+    <label class="ctl">Beispiel <select id="preset"></select></label>
+    <fieldset class="ctl modes">
+      <legend>Strahlen</legend>
+      <label><input type="radio" name="mode" value="object"> Vom Objekt</label>
+      <label><input type="radio" name="mode" value="free"> Frei</label>
+    </fieldset>
+    <div id="rayparams" class="ctl rayparams"></div>
+    <div class="ctl toggles">
+      <label><input type="checkbox" id="showImage"> Objekt &amp; Bild</label>
+      <label><input type="checkbox" id="showFormulas"> Formeln im Bild</label>
+    </div>
+  </header>
+
+  <nav class="palette" id="palette">
+    <span class="lbl">Hinzufügen:</span>
+    <button data-add="space">Freiraum</button>
+    <button data-add="lens">Dünne Linse</button>
+    <button data-add="flat">Ebene Fläche</button>
+    <button data-add="sphere">Kugelfläche</button>
+    <button data-add="block">Glasblock</button>
+    <button data-add="thick">Dicke Linse</button>
+    <span class="note">… hinter dem ausgewählten Element</span>
+    <button id="clear" class="ghost">Alles entfernen</button>
+  </nav>
+
+  <main>
+    <section class="stage">
+      <svg id="svg" viewBox="0 0 1000 440" role="img" aria-label="Strahlengang"></svg>
+      <p class="hint">Klick: Element auswählen · Linse/Fläche ziehen: verschieben · Mausrad auf Linse: f′ ändern ·
+        ● Objektspitze bzw. Startpunkt und ◆ Winkelgriff ziehen: Strahlen ändern · Entf: Element löschen</p>
+    </section>
+
+    <section class="chain" id="chain"></section>
+
+    <section class="panels">
+      <div id="details" class="panel"></div>
+      <div id="system" class="panel"></div>
+    </section>
+  </main>
+
+  <script src="optics.js"></script>
+  <script src="presets.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
