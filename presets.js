@@ -23,18 +23,18 @@ const PRESETS = (function () {
       rays: obj(10, 100, 0.08),
     },
     {
-      name: 'Lupe – virtuelles Bild (Folie 8)',
+      name: 'Lupe – virtuelles Bild',
       elements: [S(60), L(100), S(100)],
       rays: obj(10, 60, 0.1),
     },
     {
-      name: 'Glasblock (Folie 17)',
+      name: 'Glasblock',
       elements: [S(50), { type: 'block', p: { d: 40, n: 1.5 } }, S(50)],
       rays: free([[0, 0.2], [-8, 0.2], [8, 0]], [true, true, false]),
       view: { showImage: false },
     },
     {
-      name: 'Brechung an ebener Fläche (Folie 14)',
+      name: 'Brechung an ebener Fläche',
       elements: [S(60), { type: 'flat', p: { n2: 1.5 } }, S(80)],
       rays: free([[0, 0.2], [6, -0.1], [-6, 0.1]], [true, true, false]),
       view: { showImage: false },
@@ -58,7 +58,7 @@ const PRESETS = (function () {
       view: { showImage: false },
     },
     {
-      name: 'Galilei-Teleskop (Folie 19)',
+      name: 'Galilei-Teleskop',
       elements: [S(50), L(100), S(50), L(-50), S(80)],
       rays: free([[8, 0], [0, 0.05], [-8, 0]]),
       view: { showImage: false },

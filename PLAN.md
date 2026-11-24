@@ -1,6 +1,6 @@
 # ABCD-Matrizen-Spielwiese – Plan
 
-Browser-Tool zur Vorlesung „Grundlagen der Mikroskopie" (Folien 12–20, Matrizenoptik).
+Browser-Tool zur Vorlesung „Grundlagen der Mikroskopie" (Abschnitt Matrizenoptik).
 Man baut aus vorgefertigten Komponenten einen Aufbau entlang der optischen Achse, sieht
 zwei Strahlen hindurchlaufen und kann an jeder Übergangsstelle die Matrix und die
 ausgerechnete Formel ablesen.
@@ -22,12 +22,12 @@ ausgerechnete Formel ablesen.
 | Brennweite | `f' > 0` Sammellinse, `f' < 0` Zerstreuungslinse |
 | Radius | `r > 0`, wenn der Krümmungsmittelpunkt rechts der Fläche liegt |
 
-**Eine Unstimmigkeit in den Folien, die das Tool auflösen muss:** Folie 13 nennt für die
-Ausbreitung `[[1, L], [0, 1]]`, die Tabelle auf Folie 18 `[[1, d/n], [0, 1]]`. Mit echten
-Winkeln (wie bei der ebenen Fläche mit `n1/n2` auf Folie 14) ist die Ausbreitung in jedem
+**Eine Unstimmigkeit in den Folien, die das Tool auflösen muss:** Die Translationsmatrix lautet
+dort `[[1, L], [0, 1]]`, die Übersichtstabelle nennt `[[1, d/n], [0, 1]]`. Mit echten
+Winkeln (wie bei der ebenen Fläche mit `n1/n2`) ist die Ausbreitung in jedem
 Medium `[[1, d], [0, 1]]`. Das `d/n` entsteht erst als Produkt „Fläche · Strecke · Fläche",
 also beim Glasblock als Ganzem. Das Tool rechnet durchgehend mit echten Winkeln; der
-Glasblock (Beispiel Folie 17) zeigt das `d/n` dann als Ergebnis der Multiplikation.
+Glasblock zeigt das `d/n` dann als Ergebnis der Multiplikation.
 
 ## 3. Komponenten (Palette)
 
@@ -97,7 +97,7 @@ Startwerte per Zahlenfeld und durch Ziehen des Objektpunkts bzw. der Winkelgriff
   Faktor wird angezeigt), sonst sieht man bei paraxialen Winkeln nichts.
 - Zwei Strahlen in zwei festen Farben, als Polylinien `x(z) = x_i + θ_i·(z − z_i)` pro Abschnitt.
 - Objekt- und Bildpfeil. Bei virtuellem Bild: gestrichelte Rückverlängerung der Strahlen
-  und gestrichelter Bildpfeil (Fall „Lupe", Folie 8).
+  und gestrichelter Bildpfeil (Fall „Lupe").
 - Nummerierte Marker ①②③ an jeder Übergangsstelle; Hover hebt Marker, Karte und Strahlpunkte gemeinsam hervor.
 - Medien mit `n ≠ 1` leicht eingefärbt.
 - Maus: Linse/Fläche horizontal ziehen ändert die benachbarten Abstände; Mausrad auf einer
@@ -122,12 +122,12 @@ Darstellung der Matrizen mit nativem **MathML** – keine externe Bibliothek, fu
   (kumulierte Matrix bis zur jeweiligen Stelle).
 - `A, B, C, D` numerisch, `det M` als Kontrolle (`= n_ein/n_aus`).
 - Abgeleitete Größen: Systembrennweite `f' = −1/C`; „afokal" bei `C = 0` mit
-  Winkelvergrößerung `D` (Teleskop, Folie 19); Abbildungsbedingung `B = 0` an der
+  Winkelvergrößerung `D` (Teleskop); Abbildungsbedingung `B = 0` an der
   Beobachtungsebene mit `β = A`.
 - **Bildlage:** aus dem Schnittpunkt der beiden Strahlen hinter dem letzten Element
   (`z = −(x_a − x_b)/(θ_a − θ_b)`), Angabe reell/virtuell und β. Knopf **„Schirm ins Bild"**
   setzt den letzten Freiraum so, dass `B = 0` wird.
-- Inverse `M⁻¹ = (D −B; −C A)` (Strahlumkehr, Folie 20) als ausklappbare Zusatzzeile.
+- Inverse `M⁻¹ = (D −B; −C A)` (Strahlumkehr) als ausklappbare Zusatzzeile.
 
 ## 6. Beispiele (Preset-Menü)
 
@@ -135,10 +135,10 @@ Darstellung der Matrizen mit nativem **MathML** – keine externe Bibliothek, fu
 |---|---|---|
 | Einzellinse, reelle Abbildung | d – Linse – d | Linsengleichung, `B = 0` |
 | 2f–2f | 2f – Linse – 2f | β = −1 |
-| Lupe | d < f – Linse – d | virtuelles Bild (Folie 8/9) |
-| Glasblock | d – Block – d | Parallelversatz, `d/n` (Folie 17) |
+| Lupe | d < f – Linse – d | virtuelles Bild |
+| Glasblock | d – Block – d | Parallelversatz, `d/n` |
 | Kepler-Teleskop | d1 – f'1 – (f'1+f'2) – f'2 – d3 | afokal, `C = 0` |
-| Galilei-Teleskop | wie oben mit f'2 < 0 | Folie 19, Lupenbrille Folie 10 |
+| Galilei-Teleskop | wie oben mit f'2 < 0 | afokal, Prinzip der Lupenbrille |
 | Mikroskop (unendlich korrigiert) | f_obj – Objektiv – d – Tubuslinse – f_tub | β = −f_tub/f_obj |
 | Dicke Linse | d – dicke Linse – d | Vergleich mit dünner Linse |
 
@@ -164,7 +164,7 @@ Darstellung der Matrizen mit nativem **MathML** – keine externe Bibliothek, fu
 ## 8. Umsetzungsschritte
 
 1. `optics.js` mit Matrizen, Kette, Strahlverfolgung, Bildlage + Tests gegen bekannte Fälle
-   (Linsengleichung, 2f–2f, Glasblock `B = d/n`, Teleskopmatrix von Folie 19, `det M`).
+   (Linsengleichung, 2f–2f, Glasblock `B = d/n`, Teleskopmatrix, `det M`).
 2. Statische SVG-Darstellung eines fest verdrahteten Aufbaus mit zwei Strahlen.
 3. Karten-Kette mit Parameterfeldern, Hinzufügen/Löschen/Umsortieren.
 4. Übergangs-Panel und Gesamtsystem-Panel mit MathML.

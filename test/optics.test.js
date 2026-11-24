@@ -9,7 +9,7 @@ const close = (a, b, tol = 1e-9, msg) =>
   assert.ok(Math.abs(a - b) <= tol * Math.max(1, Math.abs(b)), `${msg || ''} erwartet ${b}, erhalten ${a}`);
 const closeM = (M, E, tol) => M.forEach((v, i) => close(v, E[i], tol, `Eintrag ${'ABCD'[i]}:`));
 
-test('Grundmatrizen wie auf Folie 13–15 und 18', () => {
+test('Grundmatrizen', () => {
   closeM(O.atomMatrix({ kind: 'prop', d: 7, n: 1 }), [1, 7, 0, 1]);
   closeM(O.atomMatrix({ kind: 'lens', f: 50 }), [1, 0, -0.02, 1]);
   closeM(O.atomMatrix({ kind: 'surf', r: Infinity, n1: 1, n2: 1.5 }), [1, 0, 0, 1 / 1.5]);
@@ -35,7 +35,7 @@ test('Lupe: virtuelles, aufrechtes Bild', () => {
   close(im.zImg, 60 - 150); close(im.beta, 2.5); assert.equal(im.real, false);
 });
 
-test('Glasblock (Folie 17): B enthält d/n, det = 1', () => {
+test('Glasblock: B enthält d/n, det = 1', () => {
   const sys = O.build([S(50), { type: 'block', p: { d: 40, n: 1.5 } }, S(50)]);
   closeM(sys.M, [1, 100 + 40 / 1.5, 0, 1]);
   closeM(sys.steps[1].M, [1, 40 / 1.5, 0, 1]);
@@ -48,7 +48,7 @@ test('det M = n_Start / n_Ende', () => {
   assert.equal(sys.nEnd, 1.5);
 });
 
-test('Teleskop (Folie 19): C = 0, A = −f2/f1, D = −f1/f2', () => {
+test('Teleskop: C = 0, A = −f2/f1, D = −f1/f2', () => {
   const f1 = 100, f2 = -50, d1 = 30, d3 = 70;
   const sys = O.build([S(d1), L(f1), S(f1 + f2), L(f2), S(d3)]);
   closeM(sys.M, [-f2 / f1, f1 + f2 - d1 * f2 / f1 - d3 * f1 / f2, 0, -f1 / f2]);
